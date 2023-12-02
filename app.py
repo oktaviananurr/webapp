@@ -32,7 +32,7 @@ if page == "Edit Data":
         mahasiswa_name_lama = result["Nama Mahasiswa"]
         nrp_lama = result["NRP"]
         dosen_pembimbing_lama = result["Dosen Pembimbing"]
-        co_pempimbing_lama = result["CO-Pembimbing"]
+        co_pembimbing_lama = result["CO-Pembimbing"]
         penguji_lama = result["Penguji"]
         ruang_lama = result["Ruang"]
         waktu_lama = result["Waktu"]
@@ -40,9 +40,9 @@ if page == "Edit Data":
 
         with st.expander(f'a.n. {mahasiswa_name_lama}'):
             with st.form(f'data-{id}'):
-                mahasiswa_name_baru = st.selectbox("mahasiswa_name", list_mahasiswa, list_mahasiswa.index(mahasiswa_name_lama))
+                mahasiswa_name_baru = st.selectbox("mahasiswa_name", list_mahasiswa_name, list_mahasiswa_name.index(mahasiswa_name_lama))
                 nrp_baru = st.text_input("nrp", nrp_lama)
-                dosen_pembimbing_baru = st.selectbox("dosen_pembimbing", list_co_pembimbing, list_co_pembimbing.index(dosen_pembimbing_lama))
+                dosen_pembimbing_baru = st.selectbox("dosen_pembimbing", list_dosen_pembimbing, list_dosen_pembimbing.index(dosen_pembimbing_lama))
                 co_pembimbing_baru = st.text_input("co_pembimbing", co_pembimbing_lama)
                 penguji_baru = st.multiselect("penguji", ['Dra.Lucia Aridinanti,MS', 'Dr.Drs.Brodjol Sutijo Supri Ulama', 'Dr.Wahyu Wibowo,S.Si,M.Si', 'Dwi Endah Kusrini,S.Si,M.Si', 'Dra.Destri Susilaningrum,M.Si', 'Iis Dewi Ratih,S.Si.,M.Si', 'Zakiatul Wildani,S.Si.,M.Sc', 'Dra.Sri Mumpuni Retnaningsih,MT', 'Mukti Ratna Dewi,S.Si.,M.Sc', 'Muhammad Alfian Nuriman' ], eval(penguji_lama))
                 ruang_baru = st.text_input("ruang", ruang_lama)
