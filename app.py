@@ -2,7 +2,7 @@ import streamlit as st
 from sqlalchemy import text
 
 list_mahasiswa_name = ['','Ifayanti Rohmatul Hidayah', 'Adenia Lindi Mawarni', 'Nabila Aisha', 'Hanifah Inayah', 'Hemas Salsabila Trixie', 'Iid Aida Nafisah', 'Berlyana Andalusya', 'Fitria Anggraeni','Silmi Yudiane', 'Endah Sayekti Putri Pratiwy']
-list_penguji = ['', 'Dra.Lucia Aridinanti,MS', 'Dr.Drs.Brodjol Sutijo Supri Ulama', 'Dr.Wahyu Wibowo,S.Si,M.Si', 'Dwi Endah Kusrini,S.Si,M.Si', 'Dra.Destri Susilaningrum,M.Si', 'Iis Dewi Ratih,S.Si.,M.Si', 'Zakiatul Wildani,S.Si.,M.Sc', 'Dra.Sri Mumpuni Retnaningsih,MT', 'Mukti Ratna Dewi,S.Si.,M.Sc', 'Muhammad Alfian Nuriman']
+list_penguji = ['', 'Dra.Lucia Aridinanti,MS', 'Dr.Drs.Brodjol Sutijo Supri Ulama', 'Dr.Wahyu Wibowo,S.Si,M.Si', 'Dwi Endah Kusrini,S.Si,M.Si', 'Dra.Destri Susilaningrum,M.Si', 'Iis Dewi Ratih,S.Si.,M.Si', 'Zakiatul Wildani,S.Si.,M.Sc', 'Dra.Sri Mumpuni Retnaningsih,MT']
 
 conn = st.connection("postgresql", type="sql", 
                      url="postgresql://oktaviana12002:qihNL1mB4AkH@ep-silent-lake-46622122.us-east-2.aws.neon.tech/web")
@@ -23,7 +23,7 @@ if page == "Edit Data":
         with conn.session as session:
             query = text('INSERT INTO schedule (mahasiswa_name, nrp, dosen_pembimbing, co_pembimbing, penguji, ruang, waktu, tanggal) \
                           VALUES (:1, :2, :3, :4, :5, :6, :7, :8);')
-            session.execute(query, {'1':'', '2':'', '3':'', '4':'[]', '5':'', '6':'', '7':None, '8':None})
+            session.execute(query, {'1':'', '2':'', '3':'', '4':'', '5':'[]', '6':'', '7':None, '8':None})
             session.commit()
 
     data = conn.query('SELECT * FROM schedule ORDER By id;', ttl="0")
