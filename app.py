@@ -1,14 +1,14 @@
 import streamlit as st
 from sqlalchemy import text
 
-list_DOSEN_PEMBIMBING = ['Mukti Ratna Dewi', 'Sri Mumpuni Retnaningsih', 'Brodjol Sutijo Suprih Ulama', 'Zakiatul Wildani', 'Lucia Aridinanti', 'Destri Sulistianingrum']
-list_symptom = ['', 'male', 'female']
+list_mahasiswa_name = ['Ifayanti Rohmatul Hidayah', 'Adenia Lindi Mawarni', 'Nabila Aisha', 'Hanifah Inayah', 'Hemas Salsabila Trixie', 'Iid Aida Nafisah', 'Berlyana Andalusya', 'Fitria Anggraeni','Silmi Yudiane', 'Endah Sayekti Putri Pratiwy']
+list_symptom = ['', 'Dra.Lucia Aridinanti,MS', 'Dr.Drs.Brodjol Sutijo Supri Ulama', 'Dr.Wahyu Wibowo,S.Si,M.Si', 'Dwi Endah Kusrini,S.Si,M.Si', 'Dra.Destri Susilaningrum,M.Si', 'Iis Dewi Ratih,S.Si.,M.Si', 'Zakiatul Wildani,S.Si.,M.Sc', 'Dra.Sri Mumpuni Retnaningsih,MT', 'Mukti Ratna Dewi,S.Si.,M.Sc', 'Muhammad Alfian Nuriman']
 
 conn = st.connection("postgresql", type="sql", 
                      url="postgresql://oktaviana12002:qihNL1mB4AkH@ep-silent-lake-46622122.us-east-2.aws.neon.tech/web")
 with conn.session as session:
-    query = text('CREATE TABLE IF NOT EXISTS SCHEDULE (id serial, doctor_name varchar, patient_name varchar, gender char(25), \
-                                                       symptom text, handphone varchar, address text, tanggal date);')
+    query = text('CREATE TABLE IF NOT EXISTS SCHEDULE (id serial, nama_mahasiswa varchar,  nrp varchar, dosen_pembimbing varchar, \
+                                                      co_pempimbing varchar, penguji text, ruang text, tanggal date);')
     session.execute(query)
 
 st.header('JADWAL SEMINAR PROPOSAL PROYEK AKHIR MAHASISWA DEPARTEMEN STATISTIKA BISNIS FAKULTAS VOKASI ITS SEMESTER GASAL 2023/2024')
@@ -21,7 +21,7 @@ if page == "View Data":
 if page == "Edit Data":
     if st.button('Tambah Data'):
         with conn.session as session:
-            query = text('INSERT INTO schedule (doctor_name, patient_name, gender, symptom, handphone, address, waktu, tanggal) \
+            query = text('INSERT INTO schedule (nama_mahasiswa, nrp, dosen_pembimbing, co_pempimbing, penguji, ruang, waktu, tanggal) \
                           VALUES (:1, :2, :3, :4, :5, :6, :7, :8);')
             session.execute(query, {'1':'', '2':'', '3':'', '4':'[]', '5':'', '6':'', '7':None, '8':None})
             session.commit()
@@ -29,23 +29,23 @@ if page == "Edit Data":
     data = conn.query('SELECT * FROM schedule ORDER By id;', ttl="0")
     for _, result in data.iterrows():        
         id = result['id']
-        doctor_name_lama = result["doctor_name"]
-        patient_name_lama = result["patient_name"]
-        gender_lama = result["gender"]
-        symptom_lama = result["symptom"]
-        handphone_lama = result["handphone"]
-        address_lama = result["address"]
-        waktu_lama = result["waktu"]
-        tanggal_lama = result["tanggal"]
+        mahasiswa_name_lama = result["Nama Mahasiswa"]
+        nrp_lama = result["NRP"]
+        dosen_pembimbing_lama = result["Dosen Pembimbing"]
+        co_pempimbing_lama = result["CO-Pembimbing"]
+        penguji_lama = result["Penguji"]
+        ruang_lama = result["Ruang"]
+        waktu_lama = result["Waktu"]
+        tanggal_lama = result["Tanggal"]
 
-        with st.expander(f'a.n. {patient_name_lama}'):
+        with st.expander(f'a.n. {mahasiswa_name_lama}'):
             with st.form(f'data-{id}'):
-                doctor_name_baru = st.selectbox("doctor_name", list_doctor, list_doctor.index(doctor_name_lama))
-                patient_name_baru = st.text_input("patient_name", patient_name_lama)
-                gender_baru = st.selectbox("gender", list_symptom, list_symptom.index(gender_lama))
-                symptom_baru = st.multiselect("symptom", ['cough', 'flu', 'headache', 'stomache'], eval(symptom_lama))
-                handphone_baru = st.text_input("handphone", handphone_lama)
-                address_baru = st.text_input("address", address_lama)
+                mahasiswa_name_baru = st.selectbox("mahasiswa_name", list_mahasiswa, list_mahasiswa.index(mahasiswa_name_lama))
+                nrp_baru = st.text_input("nrp", nrp_lama)
+                dosen_pembimbing_baru = st.selectbox("dosen_pembimbing", list_co_pembimbing, list_co_pembimbing.index(dosen_pembimbing_lama))
+                co_pembimbing_baru = st.text_input("co_pembimbing", co_pembimbing_lama)
+                penguji_baru = st.multiselect("penguji", ['Dra.Lucia Aridinanti,MS', 'Dr.Drs.Brodjol Sutijo Supri Ulama', 'Dr.Wahyu Wibowo,S.Si,M.Si', 'Dwi Endah Kusrini,S.Si,M.Si', 'Dra.Destri Susilaningrum,M.Si', 'Iis Dewi Ratih,S.Si.,M.Si', 'Zakiatul Wildani,S.Si.,M.Sc', 'Dra.Sri Mumpuni Retnaningsih,MT', 'Mukti Ratna Dewi,S.Si.,M.Sc', 'Muhammad Alfian Nuriman' ], eval(penguji_lama))
+                ruang_baru = st.text_input("ruang", ruang_lama)
                 waktu_baru = st.time_input("waktu", waktu_lama)
                 tanggal_baru = st.date_input("tanggal", tanggal_lama)
                 
@@ -55,11 +55,11 @@ if page == "Edit Data":
                     if st.form_submit_button('UPDATE'):
                         with conn.session as session:
                             query = text('UPDATE schedule \
-                                          SET doctor_name=:1, patient_name=:2, gender=:3, symptom=:4, \
-                                          handphone=:5, address=:6, waktu=:7, tanggal=:8 \
+                                          SET mahasiswa_name=:1,nrp=:2, dosen_pembimbing=:3, co-pembimbing=:4, \
+                                          penguji=:5, ruang=:6, waktu=:7, tanggal=:8 \
                                           WHERE id=:9;')
-                            session.execute(query, {'1':doctor_name_baru, '2':patient_name_baru, '3':gender_baru, '4':str(symptom_baru), 
-                                                    '5':handphone_baru, '6':address_baru, '7':waktu_baru, '8':tanggal_baru, '9':id})
+                            session.execute(query, {'1':mahasiswa_name_baru, '2':nrp_baru, '3':dosen_pembimbing_baru, '4':co_pembimbing(co_pembimbing_baru), 
+                                                    '5':'penguji(penguji_baru)', '6':ruang_baru, '7':waktu_baru, '8':tanggal_baru, '9':id})
                             session.commit()
                             st.experimental_rerun()
                 
