@@ -29,14 +29,14 @@ if page == "Edit Data":
     data = conn.query('SELECT * FROM schedule ORDER By id;', ttl="0")
     for _, result in data.iterrows():        
         id = result['id']
-        mahasiswa_name_lama = result["mahasiswa name"]
-        nrp_lama = result["NRP"]
-        dosen_pembimbing_lama = result["Dosen Pembimbing"]
-        co_pembimbing_lama = result["CO-Pembimbing"]
-        penguji_lama = result["Penguji"]
-        ruang_lama = result["Ruang"]
-        waktu_lama = result["Waktu"]
-        tanggal_lama = result["Tanggal"]
+        mahasiswa_name_lama = result["mahasiswa_name"]
+        nrp_lama = result["nrp"]
+        dosen_pembimbing_lama = result["dosen_pembimbing"]
+        co_pembimbing_lama = result["co_pembimbing"]
+        penguji_lama = result["penguji"]
+        ruang_lama = result["ruang"]
+        waktu_lama = result["waktu"]
+        tanggal_lama = result["tanggal"]
 
         with st.expander(f'a.n. {mahasiswa_name_lama}'):
             with st.form(f'data-{id}'):
