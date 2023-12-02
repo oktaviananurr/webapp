@@ -1,7 +1,7 @@
 import streamlit as st
 from sqlalchemy import text
 
-list_mahasiswa_name = ['Ifayanti Rohmatul Hidayah', 'Adenia Lindi Mawarni', 'Nabila Aisha', 'Hanifah Inayah', 'Hemas Salsabila Trixie', 'Iid Aida Nafisah', 'Berlyana Andalusya', 'Fitria Anggraeni','Silmi Yudiane', 'Endah Sayekti Putri Pratiwy']
+list_mahasiswa_name = ['','Ifayanti Rohmatul Hidayah', 'Adenia Lindi Mawarni', 'Nabila Aisha', 'Hanifah Inayah', 'Hemas Salsabila Trixie', 'Iid Aida Nafisah', 'Berlyana Andalusya', 'Fitria Anggraeni','Silmi Yudiane', 'Endah Sayekti Putri Pratiwy']
 list_penguji = ['', 'Dra.Lucia Aridinanti,MS', 'Dr.Drs.Brodjol Sutijo Supri Ulama', 'Dr.Wahyu Wibowo,S.Si,M.Si', 'Dwi Endah Kusrini,S.Si,M.Si', 'Dra.Destri Susilaningrum,M.Si', 'Iis Dewi Ratih,S.Si.,M.Si', 'Zakiatul Wildani,S.Si.,M.Sc', 'Dra.Sri Mumpuni Retnaningsih,MT', 'Mukti Ratna Dewi,S.Si.,M.Sc', 'Muhammad Alfian Nuriman']
 
 conn = st.connection("postgresql", type="sql", 
