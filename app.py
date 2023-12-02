@@ -29,7 +29,7 @@ if page == "Edit Data":
     data = conn.query('SELECT * FROM schedule ORDER By id;', ttl="0")
     for _, result in data.iterrows():        
         id = result['id']
-        mahasiswa_name_lama = result["Nama Mahasiswa"]
+        mahasiswa_name_lama = result["mahasiswa name"]
         nrp_lama = result["NRP"]
         dosen_pembimbing_lama = result["Dosen Pembimbing"]
         co_pembimbing_lama = result["CO-Pembimbing"]
