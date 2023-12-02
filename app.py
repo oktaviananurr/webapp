@@ -2,7 +2,7 @@ import streamlit as st
 from sqlalchemy import text
 
 list_mahasiswa_name = ['Ifayanti Rohmatul Hidayah', 'Adenia Lindi Mawarni', 'Nabila Aisha', 'Hanifah Inayah', 'Hemas Salsabila Trixie', 'Iid Aida Nafisah', 'Berlyana Andalusya', 'Fitria Anggraeni','Silmi Yudiane', 'Endah Sayekti Putri Pratiwy']
-list_symptom = ['', 'Dra.Lucia Aridinanti,MS', 'Dr.Drs.Brodjol Sutijo Supri Ulama', 'Dr.Wahyu Wibowo,S.Si,M.Si', 'Dwi Endah Kusrini,S.Si,M.Si', 'Dra.Destri Susilaningrum,M.Si', 'Iis Dewi Ratih,S.Si.,M.Si', 'Zakiatul Wildani,S.Si.,M.Sc', 'Dra.Sri Mumpuni Retnaningsih,MT', 'Mukti Ratna Dewi,S.Si.,M.Sc', 'Muhammad Alfian Nuriman']
+list_penguji = ['', 'Dra.Lucia Aridinanti,MS', 'Dr.Drs.Brodjol Sutijo Supri Ulama', 'Dr.Wahyu Wibowo,S.Si,M.Si', 'Dwi Endah Kusrini,S.Si,M.Si', 'Dra.Destri Susilaningrum,M.Si', 'Iis Dewi Ratih,S.Si.,M.Si', 'Zakiatul Wildani,S.Si.,M.Sc', 'Dra.Sri Mumpuni Retnaningsih,MT', 'Mukti Ratna Dewi,S.Si.,M.Sc', 'Muhammad Alfian Nuriman']
 
 conn = st.connection("postgresql", type="sql", 
                      url="postgresql://oktaviana12002:qihNL1mB4AkH@ep-silent-lake-46622122.us-east-2.aws.neon.tech/web")
@@ -21,7 +21,7 @@ if page == "View Data":
 if page == "Edit Data":
     if st.button('Tambah Data'):
         with conn.session as session:
-            query = text('INSERT INTO schedule (nama_mahasiswa, nrp, dosen_pembimbing, co_pempimbing, penguji, ruang, waktu, tanggal) \
+            query = text('INSERT INTO schedule (mahasiswa_name, nrp, dosen_pembimbing, co_pembimbing, penguji, ruang, waktu, tanggal) \
                           VALUES (:1, :2, :3, :4, :5, :6, :7, :8);')
             session.execute(query, {'1':'', '2':'', '3':'', '4':'[]', '5':'', '6':'', '7':None, '8':None})
             session.commit()
@@ -42,7 +42,7 @@ if page == "Edit Data":
             with st.form(f'data-{id}'):
                 mahasiswa_name_baru = st.selectbox("mahasiswa_name", list_mahasiswa_name, list_mahasiswa_name.index(mahasiswa_name_lama))
                 nrp_baru = st.text_input("nrp", nrp_lama)
-                dosen_pembimbing_baru = st.selectbox("dosen_pembimbing", list_dosen_pembimbing, list_dosen_pembimbing.index(dosen_pembimbing_lama))
+                dosen_pembimbing_baru = st.selectbox("dosen_pembimbing", list_penguji, list_penguji.index(dosen_pembimbing_lama))
                 co_pembimbing_baru = st.text_input("co_pembimbing", co_pembimbing_lama)
                 penguji_baru = st.multiselect("penguji", ['Dra.Lucia Aridinanti,MS', 'Dr.Drs.Brodjol Sutijo Supri Ulama', 'Dr.Wahyu Wibowo,S.Si,M.Si', 'Dwi Endah Kusrini,S.Si,M.Si', 'Dra.Destri Susilaningrum,M.Si', 'Iis Dewi Ratih,S.Si.,M.Si', 'Zakiatul Wildani,S.Si.,M.Sc', 'Dra.Sri Mumpuni Retnaningsih,MT', 'Mukti Ratna Dewi,S.Si.,M.Sc', 'Muhammad Alfian Nuriman' ], eval(penguji_lama))
                 ruang_baru = st.text_input("ruang", ruang_lama)
@@ -55,10 +55,10 @@ if page == "Edit Data":
                     if st.form_submit_button('UPDATE'):
                         with conn.session as session:
                             query = text('UPDATE schedule \
-                                          SET mahasiswa_name=:1,nrp=:2, dosen_pembimbing=:3, co-pembimbing=:4, \
+                                          SET mahasiswa_name=:1,nrp=:2, dosen_pembimbing=:3, co_pembimbing=:4, \
                                           penguji=:5, ruang=:6, waktu=:7, tanggal=:8 \
                                           WHERE id=:9;')
-                            session.execute(query, {'1':mahasiswa_name_baru, '2':nrp_baru, '3':dosen_pembimbing_baru, '4':co_pembimbing(co_pembimbing_baru), 
+                            session.execute(query, {'1':mahasiswa_name_baru, '2':nrp_baru, '3':dosen_pembimbing_baru, '4':co_pembimbing_baru, 
                                                     '5':'penguji(penguji_baru)', '6':ruang_baru, '7':waktu_baru, '8':tanggal_baru, '9':id})
                             session.commit()
                             st.experimental_rerun()
