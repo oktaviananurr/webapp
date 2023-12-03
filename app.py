@@ -59,7 +59,7 @@ if page == "Edit Data":
                                           penguji=:5, ruang=:6, waktu=:7, tanggal=:8 \
                                           WHERE id=:9;')
                             session.execute(query, {'1':mahasiswa_name_baru, '2':nrp_baru, '3':dosen_pembimbing_baru, '4':co_pembimbing_baru, 
-                                                    '5':'penguji(penguji_baru)', '6':ruang_baru, '7':waktu_baru, '8':tanggal_baru, '9':id})
+                                                    '5':penguji_baru, '6':ruang_baru, '7':waktu_baru, '8':tanggal_baru, '9':id})
                             session.commit()
                             st.experimental_rerun()
                 
