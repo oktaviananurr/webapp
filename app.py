@@ -2,7 +2,7 @@ import streamlit as st
 from sqlalchemy import text
 
 list_ruang = ['','TC101', 'TC106', 'TC107', 'TC108']
-list_penguji = ['', 'Dra.Lucia Aridinanti,MS', 'Dr.Drs.Brodjol Sutijo Supri Ulama', 'Dr.Wahyu Wibowo,S.Si,M.Si', 'Dwi Endah Kusrini,S.Si,M.Si', 'Dra.Destri Susilaningrum,M.Si', 'Iis Dewi Ratih,S.Si.,M.Si', 'Zakiatul Wildani,S.Si.,M.Sc', 'Dra.Sri Mumpuni Retnaningsih,MT', 'Mukti Ratna Dewi,S.Si.,M.Sc']
+
 
 conn = st.connection("postgresql", type="sql", 
                      url="postgresql://oktaviana12002:qihNL1mB4AkH@ep-silent-lake-46622122.us-east-2.aws.neon.tech/web")
@@ -44,7 +44,7 @@ if page == "Edit Data":
                 nrp_baru = st.text_input("nrp", nrp_lama)
                 dosen_pembimbing_baru = st.text_input("dosen_pembimbing", dosen_pembimbing_lama)
                 co_pembimbing_baru = st.text_input("co_pembimbing", co_pembimbing_lama)
-                penguji_baru = st.multiselect("penguji", ['','Dra.Lucia Aridinanti,MS', 'Dr.Drs.Brodjol Sutijo Supri Ulama', 'Dr.Wahyu Wibowo,S.Si,M.Si', 'Dwi Endah Kusrini,S.Si,M.Si', 'Dra.Destri Susilaningrum,M.Si', 'Iis Dewi Ratih,S.Si.,M.Si', 'Zakiatul Wildani,S.Si.,M.Sc', 'Fausania Hibatullah S.Stat.,M.Stat', 'Dra.Sri Mumpuni Retnaningsih,MT', 'Mukti Ratna Dewi,S.Si.,M.Sc', 'Muhammad Alfian Nuriman, S.Stat'], eval(penguji_lama))
+                penguji_baru = st.multiselect("penguji", ['Dra.Lucia Aridinanti,MS', 'Dr.Drs.Brodjol Sutijo Supri Ulama', 'Dr.Wahyu Wibowo,S.Si,M.Si', 'Dwi Endah Kusrini,S.Si,M.Si', 'Dra.Destri Susilaningrum,M.Si', 'Iis Dewi Ratih,S.Si.,M.Si', 'Zakiatul Wildani,S.Si.,M.Sc', 'Dra.Sri Mumpuni Retnaningsih,MT', 'Mukti Ratna Dewi,S.Si.,M.Sc', 'Muhammad Alfian Nuriman' ], list(eval(penguji_lama)))
                 ruang_baru = st.selectbox("ruang", list_ruang, list_ruang.index(ruang_lama))
                 waktu_baru = st.text_input("waktu", waktu_lama)
                 tanggal_baru = st.text_input("tanggal", tanggal_lama)
@@ -59,7 +59,7 @@ if page == "Edit Data":
                                           penguji=:5, ruang=:6, waktu=:7, tanggal=:8 \
                                           WHERE id=:9;')
                             session.execute(query, {'1':mahasiswa_name_baru, '2':nrp_baru, '3':dosen_pembimbing_baru, '4':co_pembimbing_baru, 
-                                                    '5':penguji_baru, '6':ruang_baru, '7':waktu_baru, '8':tanggal_baru, '9':id})
+                                                    '5':str(penguji_baru), '6':ruang_baru, '7':waktu_baru, '8':tanggal_baru, '9':id})
                             session.commit()
                             st.experimental_rerun()
                 
