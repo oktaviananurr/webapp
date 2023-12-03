@@ -43,7 +43,7 @@ if page == "Edit Data":
                 mahasiswa_name_baru =st.text_input("mahasiswa_name", mahasiswa_name_lama)
                 dosen_pembimbing_baru = st.selectbox("dosen_pembimbing", list_dosen_pembimbing ,list_dosen_pembimbing.index(dosen_pembimbing_lama))
                 co_pembimbing_baru = st.selectbox("co_pembimbing", list_co_pembimbing , list_co_pembimbing.index(co_pembimbing_lama))
-                penguji_baru = st.multiselect("penguji", ['Dra.Lucia Aridinanti,MS','Dwi Endah Kusrini,S.Si,M.Si', 'Dra.Destri Susilaningrum,M.Si', 'Iis Dewi Ratih,S.Si.,M.Si', 'Zakiatul Wildani,S.Si.,M.Sc',  'Mukti Ratna Dewi,S.Si.,M.Sc', 'Dra.Sri Mumpuni Retnaningsih' ],  eval(penguji_lama))
+                penguji_baru = st.text_input("penguji", penguji_lama) 
                 nrp_baru = st.text_input("nrp", nrp_lama)
                 ruang_baru = st.text_input("ruang",ruang_lama)
                 waktu_baru = st.time_input("waktu", waktu_lama)
@@ -58,7 +58,7 @@ if page == "Edit Data":
                                           SET mahasiswa_name=:1,dosen_pembimbing=:2, co_pembimbing=:3, penguji=:4, \
                                           nrp=:5, ruang=:6, waktu=:7, tanggal=:8 \
                                           WHERE id=:9;')
-                            session.execute(query, {'1':mahasiswa_name_baru, '2':dosen_pembimbing_baru, '3':co_pembimbing_baru, '4':str(penguji_baru), 
+                            session.execute(query, {'1':mahasiswa_name_baru, '2':dosen_pembimbing_baru, '3':co_pembimbing_baru, '4':penguji_baru, 
                                                     '5':nrp_baru, '6':ruang_baru, '7':waktu_baru, '8':tanggal_baru, '9':id})
                             session.commit()
                             st.experimental_rerun()
