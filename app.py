@@ -1,7 +1,7 @@
 import streamlit as st
 from sqlalchemy import text
 
-list_mahasiswa_name = ['','Ifayanti Rohmatul Hidayah', 'Adenia Lindi Mawarni', 'Nabila Aisha', 'Hanifah Inayah', 'Hemas Salsabila Trixie', 'Iid Aida Nafisah', 'Berlyana Andalusya', 'Fitria Anggraeni','Silmi Yudiane', 'Endah Sayekti Putri Pratiwy']
+list_ruang = ['','TC101', 'TC106', 'TC107', 'TC108']
 list_penguji = ['', 'Dra.Lucia Aridinanti,MS', 'Dr.Drs.Brodjol Sutijo Supri Ulama', 'Dr.Wahyu Wibowo,S.Si,M.Si', 'Dwi Endah Kusrini,S.Si,M.Si', 'Dra.Destri Susilaningrum,M.Si', 'Iis Dewi Ratih,S.Si.,M.Si', 'Zakiatul Wildani,S.Si.,M.Sc', 'Dra.Sri Mumpuni Retnaningsih,MT', 'Mukti Ratna Dewi,S.Si.,M.Sc']
 
 conn = st.connection("postgresql", type="sql", 
@@ -40,14 +40,14 @@ if page == "Edit Data":
 
         with st.expander(f'a.n. {mahasiswa_name_lama}'):
             with st.form(f'data-{id}'):
-                mahasiswa_name_baru = st.selectbox("mahasiswa_name", list_mahasiswa_name, list_mahasiswa_name.index(mahasiswa_name_lama))
+                mahasiswa_name_baru =st.text_input("mahasiswa_name", mahasiswa_name_lama)
                 nrp_baru = st.text_input("nrp", nrp_lama)
-                dosen_pembimbing_baru = st.selectbox("dosen_pembimbing", list_penguji, list_penguji.index(dosen_pembimbing_lama))
+                dosen_pembimbing_baru = st.text_input("dosen_pembimbing", dosen_pembimbing_lama)
                 co_pembimbing_baru = st.text_input("co_pembimbing", co_pembimbing_lama)
-                penguji_baru = st.multiselect("penguji", ['Dra.Lucia Aridinanti,MS', 'Dr.Drs.Brodjol Sutijo Supri Ulama', 'Dr.Wahyu Wibowo,S.Si,M.Si', 'Dwi Endah Kusrini,S.Si,M.Si', 'Dra.Destri Susilaningrum,M.Si', 'Iis Dewi Ratih,S.Si.,M.Si', 'Zakiatul Wildani,S.Si.,M.Sc', 'Fausania Hibatullah S.Stat.,M.Stat', 'Dra.Sri Mumpuni Retnaningsih,MT', 'Mukti Ratna Dewi,S.Si.,M.Sc', 'Muhammad Alfian Nuriman, S.Stat'], eval(penguji_lama))
-                ruang_baru = st.text_input("ruang", ruang_lama)
-                waktu_baru = st.time_input("waktu", waktu_lama)
-                tanggal_baru = st.date_input("tanggal", tanggal_lama)
+                penguji_baru = st.multiselect("penguji", ['','Dra.Lucia Aridinanti,MS', 'Dr.Drs.Brodjol Sutijo Supri Ulama', 'Dr.Wahyu Wibowo,S.Si,M.Si', 'Dwi Endah Kusrini,S.Si,M.Si', 'Dra.Destri Susilaningrum,M.Si', 'Iis Dewi Ratih,S.Si.,M.Si', 'Zakiatul Wildani,S.Si.,M.Sc', 'Fausania Hibatullah S.Stat.,M.Stat', 'Dra.Sri Mumpuni Retnaningsih,MT', 'Mukti Ratna Dewi,S.Si.,M.Sc', 'Muhammad Alfian Nuriman, S.Stat'], eval(penguji_lama))
+                ruang_baru = st.selectbox("ruang", list_ruang, list_ruang.index(ruang_lama))
+                waktu_baru = st.text_input("waktu", waktu_lama)
+                tanggal_baru = st.text_input("tanggal", tanggal_lama)
                 
                 col1, col2 = st.columns([1, 6])
 
