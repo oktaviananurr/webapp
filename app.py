@@ -45,8 +45,7 @@ if page == "Edit Data":
                 mahasiswa_name_baru =st.text_input("mahasiswa_name", mahasiswa_name_lama)
                 dosen_pembimbing_baru = st.selectbox("dosen_pembimbing", list_dosen_pembimbing ,list_dosen_pembimbing.index(dosen_pembimbing_lama))
                 co_pembimbing_baru = st.selectbox("co_pembimbing", list_co_pembimbing , list_co_pembimbing.index(co_pembimbing_lama))
-                penguji_lama_list = penguji_lama.split(',')  # Convert the string to a list
-                penguji_baru = st.multiselect("penguji", list_penguji, default=penguji_lama_list)
+                penguji_baru = st.multiselect("penguji", [penguji for penguji in list_penguji])
                 nrp_baru = st.text_input("nrp", nrp_lama)
                 ruang_baru = st.text_input("ruang",ruang_lama)
                 waktu_baru = st.time_input("waktu", waktu_lama)
