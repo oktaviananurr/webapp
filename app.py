@@ -3,6 +3,8 @@ from sqlalchemy import text
 
 list_dosen_pembimbing = ['','Ir.Sri Pingit Wulandari,M.Si', 'Dr.Drs.Brodjol Sutijo Supri Ulama', 'Dr.Wahyu Wibowo,S.Si,M.Si']
 list_co_pembimbing= ['', 'Fausania Hibatullah S.Stat.,M.Stat','Muhammad Alfian Nuriman, S.Stat' ]
+list_penguji= ['Dra.Lucia Aridinanti,MS', 'Dwi Endah Kusrini,S.Si,M.Si', 'Dra.Destri Susilaningrum,M.Si', 'Iis Dewi Ratih,S.Si.,M.Si', 'Zakiatul Wildani,S.Si.,M.Sc', 'Dra.Sri Mumpuni Retnaningsih,MT', 'Mukti Ratna Dewi,S.Si.,M.Sc']
+
 
 conn = st.connection("postgresql", type="sql", 
                      url="postgresql://oktaviana12002:qihNL1mB4AkH@ep-silent-lake-46622122.us-east-2.aws.neon.tech/web")
@@ -43,7 +45,7 @@ if page == "Edit Data":
                 mahasiswa_name_baru =st.text_input("mahasiswa_name", mahasiswa_name_lama)
                 dosen_pembimbing_baru = st.selectbox("dosen_pembimbing", list_dosen_pembimbing ,list_dosen_pembimbing.index(dosen_pembimbing_lama))
                 co_pembimbing_baru = st.selectbox("co_pembimbing", list_co_pembimbing , list_co_pembimbing.index(co_pembimbing_lama))
-                penguji_baru = st.multiselect("penguji", eval(penguji_lama) if eval(penguji_lama) in ['Dra.Lucia Aridinanti,MS', 'Dwi Endah Kusrini,S.Si,M.Si', 'Dra.Destri Susilaningrum,M.Si', 'Iis Dewi Ratih,S.Si.,M.Si', 'Zakiatul Wildani,S.Si.,M.Sc', 'Dra.Sri Mumpuni Retnaningsih,MT', 'Mukti Ratna Dewi,S.Si.,M.Sc'] else [])
+                penguji_baru = st.multiselect("penguji", [penguji for penguji in list_penguji if penguji in penguji_lama])
                 nrp_baru = st.text_input("nrp", nrp_lama)
                 ruang_baru = st.text_input("ruang",ruang_lama)
                 waktu_baru = st.time_input("waktu", waktu_lama)
