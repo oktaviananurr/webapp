@@ -17,13 +17,7 @@ st.header('JADWAL SEMINAR PROPOSAL PROYEK AKHIR MAHASISWA DEPARTEMEN STATISTIKA 
 page = st.sidebar.selectbox("Pilih Menu", ["View Data","Edit Data"])
 
 if page == "View Data":
-    search_query = st.sidebar.text_input("Cari Nama Mahasiswa:")
-    
-    if st.button("Reset Pencarian"):
-        search_query = ""
-        st.experimental_rerun()
-
-    data = conn.query(text('SELECT * FROM schedule WHERE mahasiswa_name ILIKE :search_query OR dosen_pembimbing ILIKE :search_query ORDER BY id;'), {'search_query': f"%{search_query}%"})
+    data = conn.query('SELECT * FROM schedule ORDER By id;', ttl="0").set_index('id')
     st.dataframe(data)
 
 if page == "Edit Data":
