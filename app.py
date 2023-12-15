@@ -32,7 +32,7 @@ st.header('JADWAL SEMINAR PROPOSAL PROYEK AKHIR MAHASISWA DEPARTEMEN STATISTIKA 
 page = st.sidebar.selectbox("Pilih Menu", ["Teams","View Data","Edit Data"])
 
 if page == "Teams":
-    path_to_image = "WhatsApp Image 2023-12-15 at 22.22.07.jpeg"
+    path_to_image = "https://itsacid-my.sharepoint.com/:i:/r/personal/2043221029_student_its_ac_id/Documents/WhatsApp%20Image%202023-12-15%20at%2022.22.07.jpeg?csf=1&web=1&e=2ErQaS"
     st.image(path_to_image, caption='Teams', use_column_width=True)
     st.markdown("## Kelompok 1:")
     st.markdown("1. Oktaviana Nur Rohmatulillah (2043221029)")
