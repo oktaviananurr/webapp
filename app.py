@@ -8,7 +8,7 @@ list_penguji= ['Dra.Lucia Aridinanti,MS', 'Dwi Endah Kusrini,S.Si,M.Si', 'Dra.De
 departemen_name= "DEPARTEMEN STATISTIKA BISNIS ITS"
 st.title(departemen_name)
 departemen_logo_url = "https://www.its.ac.id/sb/wp-content/uploads/sites/55/2018/03/2_20211020_144330_0001-1024x256.png"  # Replace with the URL of your company logo
-st.image(departemen_logo_url, caption_url = "https://www.instagram.com/dsb_its/", use_column_width=True, width=50)
+st.image(departemen_logo_url, caption = "https://www.instagram.com/dsb_its/", use_column_width=True, width=50)
 
 conn = st.connection("postgresql", type="sql", 
                      url="postgresql://oktaviana12002:qihNL1mB4AkH@ep-silent-lake-46622122.us-east-2.aws.neon.tech/web")
