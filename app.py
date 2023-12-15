@@ -17,7 +17,7 @@ st.write(
     f"""
     <style>
         .stApp {{
-            background-color: #FFA500;
+            background-color: #CD5C5C;
         }}
     </style>
     """,
