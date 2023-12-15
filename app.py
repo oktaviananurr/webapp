@@ -32,9 +32,6 @@ st.header('JADWAL SEMINAR PROPOSAL PROYEK AKHIR MAHASISWA DEPARTEMEN STATISTIKA 
 page = st.sidebar.selectbox("Pilih Menu", ["Teams","View Data","Edit Data"])
 
 if page == "Teams":
-    uploaded_file = st.file_uploader("foto streamlit (file://DESKTOP-F9RH9R2/foto%20streamlit)", type=["jpg", "jpeg", "png"])
-    if uploaded_logo is not None:
-      st.image(uploaded_logo, caption="Uploaded Logo", use_column_width=True, width=50)
     st.markdown("## By Kelompok 1:")
     st.markdown("1. Oktaviana Nur Rohmatulillah (2043221029)")
     st.markdown("2. Vira Angelina (2043221077)")
