@@ -13,12 +13,12 @@ with conn.session as session:
                                                       penguji varchar, nrp text, ruang text, waktu time,  tanggal date);')
     session.execute(query)
 
-st.markdown(
-    """
+st.write(
+    f"""
     <style>
-        body {
-            background-color: #FFA500; 
-        }
+        .stApp {{
+            background-color: #FFA500;
+        }}
     </style>
     """,
     unsafe_allow_html=True
