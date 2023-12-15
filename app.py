@@ -13,6 +13,17 @@ with conn.session as session:
                                                       penguji varchar, nrp text, ruang text, waktu time,  tanggal date);')
     session.execute(query)
 
+st.markdown(
+    """
+    <style>
+        body {
+            background-color: #f0f0f0; 
+        }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
 st.header('JADWAL SEMINAR PROPOSAL PROYEK AKHIR MAHASISWA DEPARTEMEN STATISTIKA BISNIS FAKULTAS VOKASI ITS SEMESTER GASAL 2023/2024')
 page = st.sidebar.selectbox("Pilih Menu", ["View Data","Edit Data"])
 
