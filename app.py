@@ -17,12 +17,26 @@ st.write(
     f"""
     <style>
         .stApp {{
-            background-color: #CD5C5C;
+            background-color: #FFA500;
         }}
     </style>
     """,
     unsafe_allow_html=True
 )
+
+data = conn.query('SELECT * FROM schedule ORDER By id;', ttl="0").set_index('id')
+
+# Define a function for conditional formatting
+def color_negative_red(val):
+    color = 'red' if val != '' else 'black'
+    return f'color: {color}'
+
+# Apply conditional formatting to specific columns
+formatted_data = data.style.applymap(color_negative_red, subset=['mahasiswa_name', 'dosen_pembimbing', 'co_pembimbing', 'penguji', 'nrp', 'ruang', 'waktu', 'tanggal']).render()
+
+# Display the formatted table
+st.table(formatted_data, unsafe_allow_html=True)
+
 
 st.header('JADWAL SEMINAR PROPOSAL PROYEK AKHIR MAHASISWA DEPARTEMEN STATISTIKA BISNIS FAKULTAS VOKASI ITS SEMESTER GASAL 2023/2024')
 page = st.sidebar.selectbox("Pilih Menu", ["View Data","Edit Data"])
