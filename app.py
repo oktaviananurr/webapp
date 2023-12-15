@@ -5,6 +5,8 @@ list_dosen_pembimbing = ['','Ir.Sri Pingit Wulandari,M.Si', 'Dr.Drs.Brodjol Suti
 list_co_pembimbing= ['', 'Fausania Hibatullah S.Stat.,M.Stat','Muhammad Alfian Nuriman, S.Stat' ]
 list_penguji= ['Dra.Lucia Aridinanti,MS', 'Dwi Endah Kusrini,S.Si,M.Si', 'Dra.Destri Susilaningrum,M.Si', 'Iis Dewi Ratih,S.Si.,M.Si', 'Zakiatul Wildani,S.Si.,M.Sc', 'Dra.Sri Mumpuni Retnaningsih,MT', 'Mukti Ratna Dewi,S.Si.,M.Sc']
 
+departemen_logo_url = "https://images.app.goo.gl/PxjfF9uQEz5x8bzS8"  # Replace with the URL of your company logo
+st.image(departemen_logo_url, caption=departemen_name, use_column_width=True, width=50)
 
 conn = st.connection("postgresql", type="sql", 
                      url="postgresql://oktaviana12002:qihNL1mB4AkH@ep-silent-lake-46622122.us-east-2.aws.neon.tech/web")
