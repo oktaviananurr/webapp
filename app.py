@@ -18,7 +18,7 @@ page = st.sidebar.selectbox("Pilih Menu", ["View Data","Edit Data"])
 
 if page == "View Data":
 
-    search_input = st.text_input("mahasiswa name", "")
+    search_input = st.text_input("Cari Nama Mahasiswa", "")
 
     query_str = f"SELECT * FROM schedule WHERE LOWER(mahasiswa_name) LIKE LOWER('%{search_input}%') OR LOWER(dosen_pembimbing) LIKE LOWER('%{search_input}%') OR LOWER(co_pembimbing) LIKE LOWER('%{search_input}%') ORDER By id;"
     data = conn.query(query_str, ttl="0").set_index('id')
