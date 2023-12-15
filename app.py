@@ -7,7 +7,7 @@ list_penguji= ['Dra.Lucia Aridinanti,MS', 'Dwi Endah Kusrini,S.Si,M.Si', 'Dra.De
 
 departemen_name= "DEPARTEMEN STATISTIKA BISNIS ITS"
 st.title(departemen_name)
-departemen_logo_url = "https://images.app.goo.gl/PxjfF9uQEz5x8bzS8"  # Replace with the URL of your company logo
+departemen_logo_url = "https://www.its.ac.id/sb/wp-content/uploads/sites/55/2018/03/2_20211020_144330_0001-1024x256.png"  # Replace with the URL of your company logo
 st.image(departemen_logo_url, caption=departemen_name, use_column_width=True, width=50)
 
 conn = st.connection("postgresql", type="sql", 
