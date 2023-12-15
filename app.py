@@ -28,16 +28,15 @@ st.write(
     unsafe_allow_html=True
 )
 
-page = st.sidebar.text_input("Meet Our Teams")
+st.header('JADWAL SEMINAR PROPOSAL PROYEK AKHIR MAHASISWA DEPARTEMEN STATISTIKA BISNIS FAKULTAS VOKASI ITS SEMESTER GASAL 2023/2024')
+page = st.sidebar.selectbox("Pilih Menu", ["Teams","View Data","Edit Data"])
+
 if page == "Teams":
     st.markdown("## Kelompok 1:")
     st.markdown("1. Oktaviana Nur Rohmatulillah (2043221029)")
     st.markdown("2. Vira Angelina (2043221077)")
     st.markdown("3. Rifdah Maulidyah (2043221078)")
     st.markdown("4. Elsa Amelia Nur Arimba (2043221117)")
-
-st.header('JADWAL SEMINAR PROPOSAL PROYEK AKHIR MAHASISWA DEPARTEMEN STATISTIKA BISNIS FAKULTAS VOKASI ITS SEMESTER GASAL 2023/2024')
-page = st.sidebar.selectbox("Pilih Menu", ["View Data","Edit Data"])
 
 if page == "View Data":
 
