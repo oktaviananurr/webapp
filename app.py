@@ -33,7 +33,7 @@ if page == "View Data":
 
     query_str = f"SELECT * FROM schedule WHERE LOWER(mahasiswa_name) LIKE LOWER('%{search_input}%') OR LOWER(dosen_pembimbing) LIKE LOWER('%{search_input}%') OR LOWER(co_pembimbing) LIKE LOWER('%{search_input}%') ORDER By id;"
     data = conn.query(query_str, ttl="0").set_index('id')
-    st.dataframe(data.style.applymap(color_negative_red, subset=['mahasiswa_name', 'dosen_pembimbing', 'co_pembimbing', 'penguji', 'nrp', 'ruang', 'waktu', 'tanggal']))
+    st.dataframe(data)
 
 if page == "Edit Data":
     if st.button('Tambah Data'):
