@@ -32,6 +32,10 @@ st.header('JADWAL SEMINAR PROPOSAL PROYEK AKHIR MAHASISWA DEPARTEMEN STATISTIKA 
 page = st.sidebar.selectbox("Pilih Menu", ["Teams","View Data","Edit Data"])
 
 if page == "Teams":
+    team_name= "INTRODUCE OUR TEAMS"
+    st.title(team_name)
+    team_name_url = "https://github.com/oktaviananurr/webapp/blob/c5571b6e4d54255fb3af7161d742e49457c796d6/Fotokelompok1.png"  # Replace with the URL of your company logo
+    st.image(team_name_url, caption = "kelompok1", use_column_width=True, width=50)
     st.markdown("## By Kelompok 1:")
     st.markdown("1. Oktaviana Nur Rohmatulillah (2043221029)")
     st.markdown("2. Vira Angelina (2043221077)")
